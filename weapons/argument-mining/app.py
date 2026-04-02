@@ -35,7 +35,7 @@ async def predict(data: InputData):
     if model is None:
         return {"error": "Model not loaded"}
     try:
-            result = model(data.text)
+        result = model(data.text)
         return {"result": result}
     except Exception as e:
         return {"error": str(e)}
@@ -45,7 +45,7 @@ async def predict_batch(data: BatchInput):
     if model is None:
         return {"error": "Model not loaded"}
     try:
-            results = [model(t) for t in data.texts]
+        results = [model(t) for t in data.texts]
         return {"results": results}
     except Exception as e:
         return {"error": str(e)}
