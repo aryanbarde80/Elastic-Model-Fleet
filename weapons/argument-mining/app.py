@@ -2,6 +2,8 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import Optional, Dict, Any, List
 from transformers import pipeline
+import os
+import uvicorn
 
 app = FastAPI(
     title="Argument Mining API",
@@ -62,3 +64,8 @@ async def info():
         "framework": "transformers",
         "ready": model is not None
     }
+
+# THIS IS THE KEY FIX FOR RENDER
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run(app, host="0.0.0.0", port=port)
